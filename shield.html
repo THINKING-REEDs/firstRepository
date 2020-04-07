@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            position: relative;
+            margin: auto;
+            width: 500px;
+            height: 500px;
+            /* border: black 1px solid; */
+            border-radius: 50%;
+            box-sizing: border-box;
+            background-color: #930408 ;
+            
+        }
+        div div {
+           position: absolute; 
+           left: 50%;
+           top: 50%;
+           transform: translate(-50%,-50%);
+        }
+        #c1{
+            width: 400px;
+            height: 400px;
+            background-color: #bbeafe;
+        }
+        #c2{
+            width: 300px;
+            height: 300px;
+
+        }
+        #c3{
+            width: 200px;
+            height: 200px;
+            background-color: #0247af;
+
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+        <div id="c1">
+            <div id="c2">
+                <div id="c3">
+                    <canvas id="five" width="200px" height="200px">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var five = document.getElementById("five");  
+    var context = five.getContext("2d");   
+    context.beginPath();
+    for (var i = 0; i < 5; i++) {   
+        context.lineTo(Math.cos((18+i*72)/180*Math.PI)*100+100,   
+                        -Math.sin((18+i*72)/180*Math.PI)*100+100);   
+        context.lineTo(Math.cos((54+i*72)/180*Math.PI)*50+100,   
+                         -Math.sin((54+i*72)/180*Math.PI)*50+100);   
+     }   
+     context.closePath();  
+     context.fillStyle = "#bbeafe"; 
+     context.fill();  
+     context.stroke(); 
+    
+</script>
+</html>
