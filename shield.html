@@ -3,70 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>shield</title>
+    <title>Document</title>
     <style>
-        div{
-            position: relative;
-            margin: auto;
-            width: 500px;
-            height: 500px;
-            /* border: black 1px solid; */
-            border-radius: 50%;
-            box-sizing: border-box;
-            background-color: #930408 ;
-            
+        .center {
+            margin-left: 50%;
+            transform: translateX(-50%);
         }
-        div div {
-           position: absolute; 
-           left: 50%;
-           top: 50%;
-           transform: translate(-50%,-50%);
-        }
-        #c1{
-            width: 400px;
-            height: 400px;
-            background-color: #bbeafe;
-        }
-        #c2{
-            width: 300px;
-            height: 300px;
-
-        }
-        #c3{
-            width: 200px;
-            height: 200px;
-            background-color: #0247af;
-
-        }
-
     </style>
 </head>
 <body>
-    <div>
-        <div id="c1">
-            <div id="c2">
-                <div id="c3">
-                    <canvas id="five" width="200px" height="200px">
-                    </canvas>
-                </div>
-            </div>
-        </div>
-    </div>
+  <canvas id="shield" width="500px" height="500px" class="center">
+  </canvas>
 </body>
 <script>
-    var five = document.getElementById("five");  
-    var context = five.getContext("2d");   
-    context.beginPath();
-    for (var i = 0; i < 5; i++) {   
-        context.lineTo(Math.cos((18+i*72)/180*Math.PI)*100+100,   
-                        -Math.sin((18+i*72)/180*Math.PI)*100+100);   
-        context.lineTo(Math.cos((54+i*72)/180*Math.PI)*50+100,   
-                         -Math.sin((54+i*72)/180*Math.PI)*50+100);   
-     }   
-     context.closePath();  
-     context.fillStyle = "#bbeafe"; 
-     context.fill();  
-     context.stroke(); 
+    var shield = document.getElementById("shield");  
+    var context = shield.getContext("2d"); 
+    var color =["#930408","#bbeafe","#930408","#0247af"];
+    function drawShield (color) {
+        for (let i=0;i < 4;i++) {
+            var r = 250 - 50*i;
+            context.beginPath();
+            context.arc(250,250,r,0,2*Math.PI);
+            context.fillStyle = color[i];
+            context.fill(); 
+        }
+        context.beginPath();
+        for (var i = 0; i < 5; i++) {   
+            context.lineTo(Math.cos((18+i*72)/180*Math.PI)*100+250,   
+                            -Math.sin((18+i*72)/180*Math.PI)*100+250);   
+            context.lineTo(Math.cos((54+i*72)/180*Math.PI)*50+250,   
+                            -Math.sin((54+i*72)/180*Math.PI)*50+250);   
+        }   
+        context.closePath();  
+        context.fillStyle = "#bbeafe"; 
+        context.fill();  
+        context.stroke(); 
+    }
+    
+    drawShield(color);
     
 </script>
 </html>
